@@ -11,6 +11,7 @@ using DevExpress.Xpo;
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using DentalClinic.Module.BusinessObjects;
 
 namespace DentalClinic.Module.DatabaseUpdate {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppUpdatingModuleUpdatertopic.aspx
@@ -26,20 +27,19 @@ namespace DentalClinic.Module.DatabaseUpdate {
             //    theObject = ObjectSpace.CreateObject<DomainObject1>();
             //    theObject.Name = name;
             //}
-            PermissionPolicyUser sampleUser = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "User"));
-            if(sampleUser == null) {
-                sampleUser = ObjectSpace.CreateObject<PermissionPolicyUser>();
-                sampleUser.UserName = "User";
-                sampleUser.SetPassword("");
-            }
-            PermissionPolicyRole defaultRole = CreateDefaultRole();
-            sampleUser.Roles.Add(defaultRole);
+            //PermissionPolicyUser sampleUser = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "User"));
+            //if(sampleUser == null) {
+            //    sampleUser = ObjectSpace.CreateObject<PermissionPolicyUser>();
+            //    sampleUser.UserName = "User";
+            //    sampleUser.SetPassword("");
+            //}
+            //PermissionPolicyRole defaultRole = CreateDefaultRole();
+            //sampleUser.Roles.Add(defaultRole);
 
-            PermissionPolicyUser userAdmin = ObjectSpace.FindObject<PermissionPolicyUser>(new BinaryOperator("UserName", "Admin"));
+            ApplicationUser userAdmin = ObjectSpace.FindObject<ApplicationUser>(new BinaryOperator("UserName", "Admin"));
             if(userAdmin == null) {
-                userAdmin = ObjectSpace.CreateObject<PermissionPolicyUser>();
+                userAdmin = ObjectSpace.CreateObject<ApplicationUser>();
                 userAdmin.UserName = "Admin";
-                // Set a password if the standard authentication type is used
                 userAdmin.SetPassword("");
             }
 			// If a role with the Administrators name doesn't exist in the database, create this role
